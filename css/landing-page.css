@@ -24,16 +24,6 @@ header.masthead {
   padding-bottom: 8rem;
 }
 
-header.masthead .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
-
 header.masthead h1 {
   font-size: 2rem;
 }
@@ -75,17 +65,18 @@ header.masthead h1 {
   padding-bottom: 7rem;
 }
 
-.call-to-action .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
-
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+.title {
+  background: -webkit-linear-gradient(to right, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn {
+  margin-left: 1rem;
 }
