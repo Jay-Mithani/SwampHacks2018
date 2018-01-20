@@ -12,6 +12,17 @@ h6 {
   font-weight: 700;
 }
 
+.navbar-brand {
+  font-family: 'MissionScript', Times, serif;
+}
+
+ @font-face
+{
+  font-family: MissionScript;
+  src: url('../font/Mission-Script.ttf'),
+  url('../font/Mission-Script.eot');
+}
+
 header.masthead {
   position: relative;
   background-color: #343a40;
