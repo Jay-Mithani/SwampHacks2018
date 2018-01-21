@@ -1,7 +1,20 @@
+//JS
+
+function searchBQ(word){
+	var url = "https://www.brainyquote.com/search_results?q=" + word;
+	$.get(url, function(data){
+		getArray(data);
+	})
+}
+
 function numOfMatches(string){
 	return string.exec('view quote">([^<]*)</a>').length;
 }
 
 function getQuote(string,int){
 	return string.exec('view quote">([^<]*)</a>')[int];
+}
+
+function getArray(string){
+	return string.exec('view quote">([^<]*)</a>');
 }
