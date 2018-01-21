@@ -77,7 +77,11 @@ header.masthead h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'MissionScript';
-  display: none;
+  visibility: hidden;
+}
+
+#image-input, #button {
+  visibility: hidden;
 }
 
 .btn {
@@ -109,8 +113,8 @@ header.masthead:after {
 
 #cardstock {
   margin: auto;
-  width: 50%;
-  height: 100px;
+  width: 420px;
+  height: 550px;
   background-color: white;
   display: none;
 }

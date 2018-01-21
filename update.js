@@ -2,10 +2,6 @@ const app = new Clarifai.App({
 	apiKey: 'af039f0bfa31445b94f72a332313b346'
 });
 
-document.body.addEventListener('touchmove', function(e) { 
-    e.preventDefault(); 
-});
-
 function fadeOut(element, speed) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
@@ -20,7 +16,10 @@ function fadeOut(element, speed) {
 }
 
 function fadeIn(element, speed) {
-    var op = speed;  // initial opacity
+    var op = 0.001;  // initial opacity
+    element.style.opacity = op;
+    element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+    element.style.visibility = 'visible';
     element.style.display = 'block';
     var timer = setInterval(function () {
         if (op >= 1) {
@@ -52,10 +51,28 @@ function setBelow() {
 	below.style.height = String(pageHeight - mastheadHeight) + "px";
 }
 
+function scrollDown() {
+  document.querySelector('#cardstock').scrollIntoView({ 
+  	behavior: 'smooth' 
+  });
+}
+
+function expand() {
+	below.style.height = "650px";
+	below.style['padding-top'] = "50px";
+	below.style['padding-bottom'] = "100px";
+}
+
 setBelow();
 
 $(window).resize(setBelow);
 
-fadeIn(title, 0.02);
-fadeIn(imageInput, 0.02);
-fadeIn(button, 0.02);
+window.onload = function() {
+	fadeIn(title, 0.04);
+	setTimeout(function() {fadeIn(imageInput, 0.04)}, 500);
+	setTimeout(function() {fadeIn(button, 0.04)}, 1000);
+	setTimeout(expand, 3000);
+	setTimeout(function() {fadeIn(cardstock, 0.04)}, 4000);
+	setTimeout(scrollDown, 5000);
+
+}
