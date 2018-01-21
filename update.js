@@ -3,7 +3,35 @@ const app = new Clarifai.App({
 });
 
 function getArray(str){
-	return str.exec('view quote">([^<]*)</a>');
+	var re = RegExp('view quote">([^<]*)</a>', 'g');
+	var arr = {};
+	var i = 0;
+	do {
+	    m = re.exec(str);
+	    if (m) {
+	   		console.log(m[1]);
+	        arr[i] = m[1];
+	        i++;
+	    }
+	} while (m);
+	arr.length = i;
+	return arr;
+}
+
+var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+
+
+function doCORSRequest(options, printResult) {
+    var x = new XMLHttpRequest();
+    x.open('GET', cors_api_url + options.url);
+    x.onload = x.onerror = function() {
+      printResult(
+        'GET' + ' ' + options.url + '\n' +
+        x.status + ' ' + x.statusText + '\n\n' +
+        (x.responseText || '')
+      );
+    };
+    x.send(options.data);
 }
 
 function doRequest(url, correct, wrong) {
@@ -67,8 +95,6 @@ let below = document.getElementById('below');
 function setBelow() {
 	let mastheadHeight = 2 * getPadding() + 140.7;
 	let pageHeight = $(document).height();
-	console.log(mastheadHeight);
-	console.log(pageHeight);
 	below.style.height = String(pageHeight - mastheadHeight) + "px";
 }
 
@@ -80,20 +106,20 @@ function scrollDown() {
 
 function expand() {
 	below.style.background = "linear-gradient(to bottom, #7303c0, #ff007b)";
-	below.style.height = "550px";
+	below.style.height = "600px";
 	below.style['padding-top'] = "50px";
 	below.style['padding-bottom'] = "100px";
 }
 
-var faded = true;
+var faded = false;
 
 function loadCard(url, caption) {
 	var time = 1000;
 	setTimeout(expand, time);
-	if (faded) {
-		time += 1000;
-		setTimeout(function() {fadeOut(cardstock, 0.04)}, time);
-	}
+	// if (faded) {
+	// 	time += 1000;
+	// 	setTimeout(function() {fadeOut(cardstock, 0.04)}, time);
+	// }
 	time += 1000;
 	cardstock.innerHTML = "";
 	cardstock.innerHTML += '<img id="insta-image" src="'+url+'">';
@@ -101,6 +127,7 @@ function loadCard(url, caption) {
 	setTimeout(function() {fadeIn(cardstock, 0.04)}, time);
 	time += 1000;
 	setTimeout(scrollDown, 5000);
+	faded = true;
 }
 
 setBelow();
@@ -111,23 +138,61 @@ window.onload = function() {
 	fadeIn(title, 0.04);
 	setTimeout(function() {fadeIn(imageInput, 0.04)}, 500);
 	setTimeout(function() {fadeIn(button, 0.04)}, 1000);
-	loadCard();
 }
 
-$(button).submit(function() {
-	let url = $(imageInput).value;
-	doRequest(url, 
-	function(response) { //right
-		var wordsArray = {};
-		var reducedArray = response.outputs[0].data.concepts
-		for(var i = 0; i++; i < reducedArray.length) {
-			wordsArray[i] = reducedArray[i].name;
+function searchBQ(word, callback){
+	console.log(word);
+	doCORSRequest({
+		url: "https://www.brainyquote.com/topics/" + word
+	}, function(data) {callback(getArray(data))});
+}
+
+let invalid = document.getElementById('invalid');
+
+function invalidImage() {
+	invalid.style.display = 'block';
+}
+
+$('#button').click(()=>{
+	let url = $(imageInput).val();
+	invalid.style.display = 'none';
+	try {
+		doRequest(url, 
+		function(response) { //right
+			var wordsArray = {};
+			var reducedArray = response.outputs[0].data.concepts
+			for(var i = 0; i < reducedArray.length; i++) {
+				wordsArray[i] = reducedArray[i].name;
+			}
+			var ind = 0;
+			for(var i = 0; i < reducedArray.length; i++) {
+				console.log(wordsArray[i]);
+				if (wordsArray[i] === "no person") {
+					ind++;
+				}
+				else
+					break;
+			}
+			searchBQ(wordsArray[ind], function(quoteArray) {
+				for(var i = 0; i < quoteArray.length; i++) {
+					console.log(quoteArray[i]);
+				}
+				var quote
+				do {
+					var rand2 = Math.floor(quoteArray.length * Math.random());
+					quote = quoteArray[rand2];
+				} while (quote.length < 70 || quote.length > 110)
+				loadCard(url, quote);
+			});
+		},
+
+		function(err) { //wrong
+			invalidImage();
 		}
-	},
 
-	function(err) { //wrong
-		// do invalid image shit
+		)
 	}
-
-	)
+	catch (e) {
+		invalidImage();
+	}
 })
