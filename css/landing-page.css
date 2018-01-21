@@ -22,11 +22,6 @@ h6 {
 
 }
 
-.below-ground {
-  height: 100%;
-  background: -webkit-linear-gradient(to bottom, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
  @font-face
 {
@@ -52,27 +47,15 @@ header.masthead h1 {
 }
 
 @media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
   header.masthead {
     padding-top: 12rem;
     padding-bottom: 12rem;
   }
   header.masthead h1 {
     font-size: 5rem;
-  }
-}
-
-.showcase .showcase-text {
-  padding: 3rem;
-}
-
-.showcase .showcase-img {
-  min-height: 30rem;
-  background-size: cover;
-}
-
-@media (min-width: 768px) {
-  .showcase .showcase-text {
-    padding: 7rem;
   }
 }
 
@@ -86,11 +69,6 @@ header.masthead h1 {
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;
-}
-
-footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
 }
 
 #title {
@@ -120,4 +98,19 @@ header.masthead:after {
 
 .form-group {
   margin-bottom: 0rem;
+}
+
+.below-ground {
+  height: 0px;
+  width: 100%;
+  background: -webkit-linear-gradient(to bottom, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#cardstock {
+  margin: auto;
+  width: 50%;
+  height: 100px;
+  background-color: white;
+  display: none;
 }
