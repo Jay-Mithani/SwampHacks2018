@@ -113,8 +113,12 @@ header.masthead:after {
 
 #cardstock {
   margin: auto;
-  width: 420px;
+  max-width: 85%;
+  width: 380px;
   height: 550px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
   display: none;
+  position: relative;
+  z-index: 2;
 }
