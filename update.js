@@ -2,6 +2,22 @@ const app = new Clarifai.App({
 	apiKey: 'af039f0bfa31445b94f72a332313b346'
 });
 
+function getArray(str){
+	return str.exec('view quote">([^<]*)</a>');
+}
+
+function doRequest(url, correct, wrong) {
+	app.models.predict(Clarifai.GENERAL_MODEL, url).then(
+	  function(response) {
+	    correct(response);
+	  },
+	  function(err) {
+	    wrong(err);
+	  }
+	);
+}
+
+
 //function getWords('image-url') {
 // 
 //}
@@ -100,5 +116,18 @@ window.onload = function() {
 
 $(button).submit(function() {
 	let url = $(imageInput).value;
-	
+	doRequest(url, 
+	function(response) { //right
+		var wordsArray = {};
+		var reducedArray = response.outputs[0].data.concepts
+		for(var i = 0; i++; i < reducedArray.length) {
+			wordsArray[i] = reducedArray[i].name;
+		}
+	},
+
+	function(err) { //wrong
+		// do invalid image shit
+	}
+
+	)
 })
