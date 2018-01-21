@@ -22,6 +22,7 @@
 	<link href="css/landing-page.css" rel="stylesheet">
 
 	<script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+	<link rel="shortcut icon" href="favicon.ico">
 
   </head>
 
@@ -32,27 +33,29 @@
 	  <div class="container">
 		<div class="row">
 		  <div class="col-xl-9 mx-auto">
-			<h1 class="title" class="mb-20">Captionify</h1>
+			<h1 id="title" class="mb-20">Captionify</h1>
 		  </div>
 		  <div class="mx-auto">
 			  <form class="form-inline">
 			    <div class="col-xs-6 form-group">
 			      <input type="text" class="form-control" id="image-input" placeholder="Image URL...">
 			    </div>
-			    <button type="submit" class="btn btn-primary">Captionify it!</button>
+			    <button type="submit" id="button" class="btn btn-primary">Captionify it!</button>
 			  </form>
 		  </div>
 		</div>
 	  </div>
 	</header>
 
-	<div>
-	</div>
+	<div class="below-ground"></div>
+
+	<div id="cardstock"></div>
 
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="update.js"></script>
 
   </body>
 

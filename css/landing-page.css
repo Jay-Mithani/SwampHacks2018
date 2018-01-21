@@ -1,7 +1,10 @@
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: -webkit-linear-gradient(to bottom, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 h1,
@@ -17,6 +20,12 @@ h6 {
 .navbar-brand {
   font-family: 'MissionScript', Times, serif;
 
+}
+
+.below-ground {
+  height: 100%;
+  background: -webkit-linear-gradient(to bottom, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
  @font-face
@@ -84,12 +93,13 @@ footer.footer {
   padding-bottom: 4rem;
 }
 
-.title {
+#title {
   background: -webkit-linear-gradient(to right, #7303c0, #ff007b);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #7303c0, #ff007b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'MissionScript';
+  display: none;
 }
 
 .btn {
