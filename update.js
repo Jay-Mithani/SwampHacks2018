@@ -123,7 +123,7 @@ function loadCard(url, caption) {
 	time += 1000;
 	cardstock.innerHTML = "";
 	cardstock.innerHTML += '<img id="insta-image" src="'+url+'">';
-	cardstock.innerHTML += '<p id="insta-caption">' + caption +'</p>';
+	cardstock.innerHTML += '<p id="insta-caption"><span id="insta-span">' + caption +'</span></p>';
 	setTimeout(function() {fadeIn(cardstock, 0.04)}, time);
 	time += 1000;
 	setTimeout(scrollDown, 5000);
@@ -181,7 +181,7 @@ $('#button').click(()=>{
 				do {
 					var rand2 = Math.floor(quoteArray.length * Math.random());
 					quote = quoteArray[rand2];
-				} while (quote.length < 70 || quote.length > 110)
+				} while (quote.length < 70 || quote.length > 105)
 				loadCard(url, quote);
 			});
 		},
