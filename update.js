@@ -2,6 +2,11 @@ const app = new Clarifai.App({
 	apiKey: 'af039f0bfa31445b94f72a332313b346'
 });
 
+//function getWords('image-url') {
+// 
+//}
+// output: array of words
+
 function fadeOut(element, speed) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
@@ -58,9 +63,27 @@ function scrollDown() {
 }
 
 function expand() {
-	below.style.height = "650px";
+	below.style.background = "linear-gradient(to bottom, #7303c0, #ff007b)";
+	below.style.height = "550px";
 	below.style['padding-top'] = "50px";
 	below.style['padding-bottom'] = "100px";
+}
+
+var faded = true;
+
+function loadCard(url, caption) {
+	var time = 1000;
+	setTimeout(expand, time);
+	if (faded) {
+		time += 1000;
+		setTimeout(function() {fadeOut(cardstock, 0.04)}, time);
+	}
+	time += 1000;
+	setTimeout(function() {fadeIn(cardstock, 0.04)}, time);
+	time += 1000;
+	setTimeout(scrollDown, 5000);
+	cardstock.innerHTML = "";
+	cardstock.innerHTML += '<img id="insta-image" src="">'
 }
 
 setBelow();
