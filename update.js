@@ -83,7 +83,8 @@ function loadCard(url, caption) {
 	time += 1000;
 	setTimeout(scrollDown, 5000);
 	cardstock.innerHTML = "";
-	cardstock.innerHTML += '<img id="insta-image" src="">'
+	cardstock.innerHTML += '<img id="insta-image" src="'+url+'">';
+	cardstock.innerHTML += '<p id="insta-caption">' + caption +'</p>';
 }
 
 setBelow();
@@ -94,8 +95,5 @@ window.onload = function() {
 	fadeIn(title, 0.04);
 	setTimeout(function() {fadeIn(imageInput, 0.04)}, 500);
 	setTimeout(function() {fadeIn(button, 0.04)}, 1000);
-	setTimeout(expand, 3000);
-	setTimeout(function() {fadeIn(cardstock, 0.04)}, 4000);
-	setTimeout(scrollDown, 5000);
-
+	loadCard();
 }
