@@ -28,10 +28,29 @@ function fadeIn(element, speed) {
     }, 10);
 }
 
+let masthead = document.getElementById('masthead');
+
+function getPadding() {
+	return parseInt($(masthead).css('padding-top'), 10);
+}
+
 let title = document.getElementById('title');
 let cardstock = document.getElementById('cardstock');
 let button = document.getElementById('button');
 let imageInput = document.getElementById('image-input');
+let below = document.getElementById('below');
+
+function setBelow() {
+	let mastheadHeight = 2 * getPadding() + 140.7;
+	let pageHeight = $(document).height();
+	console.log(mastheadHeight);
+	console.log(pageHeight);
+	below.style.height = String(pageHeight - mastheadHeight) + "px";
+}
+
+setBelow();
+
+$(window).resize(setBelow);
 
 fadeIn(title, 0.02);
 fadeIn(imageInput, 0.02);
