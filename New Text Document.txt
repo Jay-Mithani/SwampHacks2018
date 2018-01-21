@@ -1,0 +1,7 @@
+function numOfMatches(string){
+	return string.exec('view quote">([^<]*)</a>').length;
+}
+
+function getQuote(string,int){
+	return string.exec('view quote">([^<]*)</a>')[int];
+}
