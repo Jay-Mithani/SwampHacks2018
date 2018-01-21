@@ -106,7 +106,7 @@ function scrollDown() {
 
 function expand() {
 	below.style.background = "linear-gradient(to bottom, #7303c0, #ff007b)";
-	below.style.height = "600px";
+	below.style.height = "650px";
 	below.style['padding-top'] = "50px";
 	below.style['padding-bottom'] = "100px";
 }
@@ -155,6 +155,7 @@ function invalidImage() {
 
 $('#button').click(()=>{
 	let url = $(imageInput).val();
+	cardstock.style.visibility = 'hidden';
 	invalid.style.display = 'none';
 	try {
 		doRequest(url, 
